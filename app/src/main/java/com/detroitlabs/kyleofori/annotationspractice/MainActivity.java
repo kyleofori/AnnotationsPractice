@@ -1,8 +1,11 @@
 package com.detroitlabs.kyleofori.annotationspractice;
 
 import android.content.Intent;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +17,10 @@ import android.widget.Toast;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.io.IOException;
 
 @EActivity (R.layout.activity_homepage)
 public class MainActivity extends ActionBarActivity {
@@ -27,6 +34,5 @@ public class MainActivity extends ActionBarActivity {
     @Click (R.id.btn_go_to_search)
         void updateButtonText() {
         txtResourceLoadingStatus.setText(getString(R.string.resources_loaded));
-
     }
 }
