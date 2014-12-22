@@ -2,7 +2,46 @@
 <resources>
 
     <string name="app_name">AnnotationsPractice</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="clever_tagline">This is the tagline for TeacherTools!</string>
+    <string name="login">Log In</string>
     <string name="action_settings">Settings</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
+    <string name="favorites">Favorites</string>
+    <string name="added_to_favorites">Added to favorites</string>
+    <string name="see_favorites">See favorites</string>
+    <string name="removed_from_favorites">Removed from favorites.</string>
+    <string name="clear_favorites">Clear favorites</string>
+    <string name="downloads">Downloads</string>
+    <string name="search_on_success">Search the Lesson plans!</string>
+    <string name="search_on_error">Search the Lesson plans anyway.</string>
+    <string name="Teacher_Tools">Teacher Tools</string>
+    <string name="preview">preview\:</string>
+    <string name="description">description\:</string>
+    <string name="standard">standard\:</string>
+    <string name="duration">duration\:</string>
+    <string name="author">author\:</string>
+    <string name="title">title\:</string>
+    <string name="results">results</string>
+    <string name="username">user name</string>
+    <string name="password">password</string>
+    <string name="toast_search_error">You must enter the name of a playlist.</string>
+    <string name="on">on</string>
+    <string name="off">off</string>
 
+    <string name="fragment_controller_interface_error">Your activity must implement the Fragment Controller interface.</string>
+    <string name="toast_favorite_added">This lesson plan has been added to your Favorites.</string>
+    <string name="no_favorites_items">No favorites</string>
+    <string name="no_favorites_msg">Long press on items to add to favorites.</string>
+    <string name="clear">Clear</string>
+    <string name="cancel">Cancel</string>
+    <string name="dialog_clear_favorites_message">This action cannot be undone.</string>
+    <string name="dialog_clear_favorites_title">Clear favorites?</string>
+    <string name="welcome">Welcome to Teacher Tools!</string>
+    <string name="resources_loading">"Your lesson plans are now loading…</string>
+    <string name="resources_loaded">"Your lesson plans are loaded.</string>
+    <string name="add_to_favorites">Add to favorites</string>
+    <string name="error_loading_lesson_plans">There was an error loading lesson plans from Khan
+        Academy.
+    </string>
 </resources>
