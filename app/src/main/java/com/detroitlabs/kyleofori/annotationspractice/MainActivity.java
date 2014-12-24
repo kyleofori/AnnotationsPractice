@@ -21,11 +21,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.util.List;
 
 @EActivity (R.layout.activity_homepage)
 public class MainActivity extends ActionBarActivity implements KhanAcademyApiCallback {
 
+    public static List<LessonModel> khanAcademyLessonModels;
     private KhanAcademyApi khanAcademyApi = KhanAcademyApi.getKhanAcademyApi();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,8 @@ public class MainActivity extends ActionBarActivity implements KhanAcademyApiCal
 //        khanAcademyLessonModels = KhanAcademyJSONParser.parseJSONObject(response);
         txtResourceLoadingStatus.setText(R.string.resources_loaded);
         Log.i(this.getClass().getSimpleName(), response.toString().substring(1, 100));
+        khanAcademyLessonModels = KhanAcademyJSONParser.parseJSONObject(response);
+        Log.i(this.getClass().getSimpleName(), khanAcademyLessonModels.get(0).getLessonId());
         btnGoToSearch.setEnabled(true);
     }
 
