@@ -9,7 +9,7 @@ import android.os.Parcelable;
  * Created by bobbake4 on 11/13/14.
  */
 
-public class LessonModel implements Parcelable {
+public class Lesson implements Parcelable {
 
     private String title;
     private String lessonUrl;
@@ -17,7 +17,7 @@ public class LessonModel implements Parcelable {
     private boolean isFavorited;
     private String lessonId;
 
-    public LessonModel(String title, String lessonUrl, String description, boolean isFavorited, String lessonId){
+    public Lesson(String title, String lessonUrl, String description, boolean isFavorited, String lessonId){
         this.title = title;
         this.lessonUrl = lessonUrl;
         this.description = description;
@@ -59,7 +59,7 @@ public class LessonModel implements Parcelable {
         return star;
     }
 
-    protected LessonModel(Parcel in) {
+    protected Lesson(Parcel in) {
         title = in.readString();
         lessonUrl = in.readString();
         description = in.readString();
@@ -82,15 +82,15 @@ public class LessonModel implements Parcelable {
     }
 
     @SuppressWarnings("unused")
-    public static final Creator<LessonModel> CREATOR = new Creator<LessonModel>() {
+    public static final Creator<Lesson> CREATOR = new Creator<Lesson>() {
         @Override
-        public LessonModel createFromParcel(Parcel in) {
-            return new LessonModel(in);
+        public Lesson createFromParcel(Parcel in) {
+            return new Lesson(in);
         }
 
         @Override
-        public LessonModel[] newArray(int size) {
-            return new LessonModel[size];
+        public Lesson[] newArray(int size) {
+            return new Lesson[size];
         }
     };
 }

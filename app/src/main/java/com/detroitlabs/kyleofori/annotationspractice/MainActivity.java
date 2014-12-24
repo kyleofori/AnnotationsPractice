@@ -1,16 +1,9 @@
 package com.detroitlabs.kyleofori.annotationspractice;
 
-import android.content.Intent;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,15 +11,13 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 import org.json.JSONArray;
-import org.json.JSONException;
 
-import java.io.IOException;
 import java.util.List;
 
 @EActivity (R.layout.activity_homepage)
 public class MainActivity extends ActionBarActivity implements KhanAcademyApiCallback {
 
-    public static List<LessonModel> khanAcademyLessonModels;
+    public static List<Lesson> khanAcademyLessons;
     private KhanAcademyApi khanAcademyApi = KhanAcademyApi.getKhanAcademyApi();
 
 
@@ -50,11 +41,10 @@ public class MainActivity extends ActionBarActivity implements KhanAcademyApiCal
 
     @Override
     public void onSuccess(JSONArray response) {
-//        khanAcademyLessonModels = KhanAcademyJSONParser.parseJSONObject(response);
         txtResourceLoadingStatus.setText(R.string.resources_loaded);
         Log.i(this.getClass().getSimpleName(), response.toString().substring(1, 100));
-        khanAcademyLessonModels = KhanAcademyJSONParser.parseJSONObject(response);
-        Log.i(this.getClass().getSimpleName(), khanAcademyLessonModels.get(0).getLessonId());
+        khanAcademyLessons = KhanAcademyJSONParser.parseJSONObject(response);
+        Log.i(this.getClass().getSimpleName(), khanAcademyLessons.get(0).getLessonId());
         btnGoToSearch.setEnabled(true);
     }
 

@@ -1,7 +1,5 @@
 package com.detroitlabs.kyleofori.annotationspractice;
 
-import com.detroitlabs.kyleofori.annotationspractice.LessonModel;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,10 +12,10 @@ import java.util.List;
  */
 public class KhanAcademyJSONParser {
 
-    public static List<LessonModel> parseJSONObject(JSONArray jsonArray) {
+    public static List<Lesson> parseJSONObject(JSONArray jsonArray) {
 
         try {
-            List<LessonModel> lessonModels = new ArrayList<>();
+            List<Lesson> lessons = new ArrayList<>();
 
             for (int index = 0; index < jsonArray.length(); index++) {
 
@@ -27,12 +25,12 @@ public class KhanAcademyJSONParser {
                 String description = playlistObject.optString("description", "unknown description");
                 String lessonId = playlistObject.optString("content_id", "unknown ID");
 
-                LessonModel currentLessonModel = new LessonModel(title, kaUrl, description, false, lessonId);
+                Lesson currentLesson = new Lesson(title, kaUrl, description, false, lessonId);
 
-                lessonModels.add(currentLessonModel);
+                lessons.add(currentLesson);
             }
 
-            return lessonModels;
+            return lessons;
         } catch (JSONException e) {
             return new ArrayList<>();
         }
