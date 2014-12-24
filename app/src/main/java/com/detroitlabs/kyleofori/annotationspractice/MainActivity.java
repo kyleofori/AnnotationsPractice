@@ -1,8 +1,10 @@
 package com.detroitlabs.kyleofori.annotationspractice;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,7 +22,6 @@ public class MainActivity extends ActionBarActivity implements KhanAcademyApiCal
     public static List<Lesson> khanAcademyLessons;
     private KhanAcademyApi khanAcademyApi = KhanAcademyApi.getKhanAcademyApi();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,24 +35,20 @@ public class MainActivity extends ActionBarActivity implements KhanAcademyApiCal
     Button btnGoToSearch;
 
     @Click (R.id.btn_go_to_search)
-        void updateButtonText() {
-        txtResourceLoadingStatus.setText(getString(R.string.resources_loaded));
+    void openSearchResultsListFragment() {
+        Intent toResultsActivity = new Intent(this, ResultsActivity.class);
+        startActivity(toResultsActivity);
     }
-
 
     @Override
     public void onSuccess(JSONArray response) {
         txtResourceLoadingStatus.setText(R.string.resources_loaded);
-        Log.i(this.getClass().getSimpleName(), response.toString().substring(1, 100));
         khanAcademyLessons = KhanAcademyJSONParser.parseJSONObject(response);
-        Log.i(this.getClass().getSimpleName(), khanAcademyLessons.get(0).getLessonId());
-        btnGoToSearch.setEnabled(true);
     }
 
     @Override
     public void onError() {
         Toast.makeText(this, R.string.error_loading_lesson_plans, Toast.LENGTH_SHORT).show();
-        btnGoToSearch.setEnabled(true);
-        btnGoToSearch.setText(getString(R.string.search_on_error));
+        btnGoToSearch.setEnabled(false);
     }
 }
