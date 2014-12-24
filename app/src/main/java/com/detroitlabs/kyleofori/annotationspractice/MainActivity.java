@@ -22,12 +22,6 @@ public class MainActivity extends ActionBarActivity implements KhanAcademyApiCal
     public static List<Lesson> khanAcademyLessons;
     private KhanAcademyApi khanAcademyApi = KhanAcademyApi.getKhanAcademyApi();
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        khanAcademyApi.getKhanAcademyPlaylists(this);
-    }
-
     @ViewById (R.id.resource_loading_status)
     TextView txtResourceLoadingStatus;
 
@@ -36,8 +30,14 @@ public class MainActivity extends ActionBarActivity implements KhanAcademyApiCal
 
     @Click (R.id.btn_go_to_search)
     void openSearchResultsListFragment() {
-        Intent toResultsActivity = new Intent(this, ResultsActivity.class);
+        Intent toResultsActivity = new Intent(this, ResultsActivity_.class);
         startActivity(toResultsActivity);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        khanAcademyApi.getKhanAcademyPlaylists(this);
     }
 
     @Override

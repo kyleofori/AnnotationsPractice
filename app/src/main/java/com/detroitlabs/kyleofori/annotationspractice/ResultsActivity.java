@@ -7,40 +7,41 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
+
 /**
  * Created by kyleofori on 11/30/14.
  */
-public class ResultsActivity extends Activity implements FragmentController, View.OnClickListener {
+@EActivity(R.layout.activity_results)
+public class ResultsActivity extends Activity implements FragmentController {
 
 /*
     private FavoritesFragment favoritesFragment = new FavoritesFragment();
 */
 
+    @ViewById(R.id.btn_see_favorites)
+    Button btnSeeFavorites;
+
+    @Click (R.id.btn_see_favorites)
+    void goToFavorites() {
+        /*
+                if(!favoritesFragment.isAdded()) {
+                    changeFragment(favoritesFragment, true);
+                }
+*/
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_results);
-        Button btnSeeFavorites = (Button) findViewById(R.id.btn_see_favorites);
-        btnSeeFavorites.setOnClickListener(this);
 
 /*
         getFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, new SearchResultsFragment())
                 .commit();
 */
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btn_see_favorites:
-/*
-                if(!favoritesFragment.isAdded()) {
-                    changeFragment(favoritesFragment, true);
-                }
-*/
-                break;
-        }
     }
 
     @Override
