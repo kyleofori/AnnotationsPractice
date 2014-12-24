@@ -23,7 +23,15 @@ import org.json.JSONException;
 import java.io.IOException;
 
 @EActivity (R.layout.activity_homepage)
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements KhanAcademyApiCallback {
+
+    private KhanAcademyApi khanAcademyApi = KhanAcademyApi.getKhanAcademyApi();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        khanAcademyApi.getKhanAcademyPlaylists(this);
+    }
 
     @ViewById (R.id.resource_loading_status)
     TextView txtResourceLoadingStatus;
@@ -34,5 +42,21 @@ public class MainActivity extends ActionBarActivity {
     @Click (R.id.btn_go_to_search)
         void updateButtonText() {
         txtResourceLoadingStatus.setText(getString(R.string.resources_loaded));
+    }
+
+
+    @Override
+    public void onSuccess(JSONArray response) {
+//        khanAcademyLessonModels = KhanAcademyJSONParser.parseJSONObject(response);
+        txtResourceLoadingStatus.setText(R.string.resources_loaded);
+        Log.i(this.getClass().getSimpleName(), response.toString().substring(1, 100));
+        btnGoToSearch.setEnabled(true);
+    }
+
+    @Override
+    public void onError() {
+        Toast.makeText(this, R.string.error_loading_lesson_plans, Toast.LENGTH_SHORT).show();
+        btnGoToSearch.setEnabled(true);
+        btnGoToSearch.setText(getString(R.string.search_on_error));
     }
 }

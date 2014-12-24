@@ -17,6 +17,19 @@ import java.net.URL;
  */
 public class KhanAcademyApi {
 
+    private static KhanAcademyApi khanAcademyApi;
+
+    public static KhanAcademyApi getKhanAcademyApi() {
+        if (khanAcademyApi == null) {
+            khanAcademyApi = new KhanAcademyApi();
+        }
+
+        return khanAcademyApi;
+    }
+
+    private KhanAcademyApi() {
+    }
+
     public void getKhanAcademyPlaylists(KhanAcademyApiCallback callback) {
         Uri.Builder builder = new Uri.Builder()
                 .scheme("http")
