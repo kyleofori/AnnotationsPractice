@@ -25,6 +25,11 @@ public class KhanAcademyJSONParser {
                 String description = playlistObject.optString("description", "unknown description");
                 String lessonId = playlistObject.optString("content_id", "unknown ID");
 
+//                title = escapeHTML(title);
+//                kaUrl = escapeHTML(kaUrl);
+//                description = escapeHTML(description);
+//                lessonId = escapeHTML(lessonId);
+
                 Lesson currentLesson = new Lesson(title, kaUrl, description, false, lessonId);
 
                 lessons.add(currentLesson);
@@ -35,5 +40,31 @@ public class KhanAcademyJSONParser {
             return new ArrayList<>();
         }
     }
+
+//    public static String escapeHTML(String s) {
+//        StringBuilder sb = new StringBuilder();
+//        int n = s.length();
+//        for (int i = 0; i < n; i++) {
+//            char c = s.charAt(i);
+//            switch (c) {
+//                case 'é':
+//                    sb.append("\u00E9");
+//                    break;
+//                case 'É':
+//                    sb.append("\u00C9;");
+//                    break;
+//                case '\'':
+//                    sb.append("\u0027");
+//                    break;
+//                case '’':
+//                    sb.append("\u2019");
+//                    break;
+//                default:
+//                    sb.append(c);
+//                    break;
+//            }
+//        }
+//        return sb.toString();
+//    }
 
 }

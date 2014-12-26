@@ -37,11 +37,9 @@ public class ResultsActivity extends Activity implements FragmentController {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-/*
         getFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, new SearchResultsFragment())
+                .replace(R.id.fragment_container, new SearchResultsFragment_())
                 .commit();
-*/
     }
 
     @Override
