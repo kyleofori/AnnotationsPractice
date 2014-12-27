@@ -68,7 +68,6 @@ public class SearchResultsFragment extends Fragment implements
     @AfterViews
     void setAdapterOnListView() {
         searchResultsAdapter = new SearchResultsAdapter(getActivity(), visibleLessons);
-//        ListView listView = (ListView) view.findViewById(R.id.list_search_results);
         listView.setAdapter(searchResultsAdapter);
 
 
@@ -122,11 +121,6 @@ public class SearchResultsFragment extends Fragment implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activity = getActivity();
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_search_results, container, false);
 
         sharedPreference = new SharedPreference();
         favorites = sharedPreference.getFavorites(activity);
@@ -166,9 +160,6 @@ public class SearchResultsFragment extends Fragment implements
 
         Log.i(this.getClass().getSimpleName(), "See some id " + visibleLessons.get(0).getLessonId());
         searchResultsAdapter = new SearchResultsAdapter(getActivity(), visibleLessons);
-//        ListView listView = (ListView) view.findViewById(R.id.list_search_results);
-
-return view;
     }
 
     @Override
