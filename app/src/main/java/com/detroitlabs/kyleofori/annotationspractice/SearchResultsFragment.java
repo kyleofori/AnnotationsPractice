@@ -27,7 +27,9 @@ import android.widget.Toast;
 
 import com.detroitlabs.kyleofori.annotationspractice.SearchResultsAdapter;
 
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +62,51 @@ public class SearchResultsFragment extends Fragment implements
 
     Activity activity;
 
+    @ViewById (R.id.list_search_results)
+    protected ListView listView;
+
+    @AfterViews
+    void setAdapterOnListView() {
+        searchResultsAdapter = new SearchResultsAdapter(getActivity(), visibleLessons);
+//        ListView listView = (ListView) view.findViewById(R.id.list_search_results);
+        listView.setAdapter(searchResultsAdapter);
+
+
+        listView.setOnItemClickListener(this);
+        listView.setOnItemLongClickListener(this);
+
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem,
+                                 int visibleItemCount, int totalItemCount) {
+
+                if (firstVisibleItem + visibleItemCount == totalItemCount) {
+                    if (stopPosition < khanAcademyLessonModels.size()) {
+                        Log.i(this.getClass().getSimpleName(), "stop position " + String.valueOf(stopPosition));
+                        startingPosition = stopPosition;
+                        if ((stopPosition + LOAD_NUMBER) > khanAcademyLessonModels.size()) {
+                            stopPosition = stopPosition + (khanAcademyLessonModels.size() - stopPosition);
+                        } else {
+                            stopPosition = stopPosition + LOAD_NUMBER;
+                        }
+
+                        for (int i = startingPosition; i < stopPosition; i++) {
+                            searchResultsAdapter.add(khanAcademyLessonModels.get(i));
+                        }
+                        Log.i(this.getClass().getSimpleName(), "just added " + String.valueOf(startingPosition) + "thru " + String.valueOf(stopPosition));
+
+
+                        searchResultsAdapter.notifyDataSetChanged();
+                    }
+                }
+            }
+        });
+    }
 
     @Override
     public void onAttach(Activity activity) {
@@ -119,44 +166,7 @@ public class SearchResultsFragment extends Fragment implements
 
         Log.i(this.getClass().getSimpleName(), "See some id " + visibleLessons.get(0).getLessonId());
         searchResultsAdapter = new SearchResultsAdapter(getActivity(), visibleLessons);
-        ListView listView = (ListView) view.findViewById(R.id.list_search_results);
-        listView.setAdapter(searchResultsAdapter);
-
-
-        listView.setOnItemClickListener(this);
-        listView.setOnItemLongClickListener(this);
-
-        listView.setOnScrollListener(new AbsListView.OnScrollListener(){
-
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {}
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem,
-                                 int visibleItemCount, int totalItemCount) {
-
-                if (firstVisibleItem + visibleItemCount == totalItemCount) {
-                    if (stopPosition < khanAcademyLessonModels.size()) {
-                        Log.i(this.getClass().getSimpleName(), "stop position " + String.valueOf(stopPosition));
-                        startingPosition = stopPosition;
-                        if ((stopPosition + LOAD_NUMBER) > khanAcademyLessonModels.size()) {
-                            stopPosition = stopPosition + (khanAcademyLessonModels.size() - stopPosition);
-                        } else {
-                            stopPosition = stopPosition + LOAD_NUMBER;
-                        }
-
-                        for (int i = startingPosition; i < stopPosition; i++) {
-                            searchResultsAdapter.add(khanAcademyLessonModels.get(i));
-                        }
-                        Log.i(this.getClass().getSimpleName(), "just added " + String.valueOf(startingPosition) + "thru " + String.valueOf(stopPosition));
-
-
-                        searchResultsAdapter.notifyDataSetChanged();
-                    }
-                }
-            }
-        });
-
+//        ListView listView = (ListView) view.findViewById(R.id.list_search_results);
 
 return view;
     }
