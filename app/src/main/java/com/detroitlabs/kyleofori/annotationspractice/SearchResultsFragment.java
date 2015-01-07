@@ -28,6 +28,7 @@ import android.widget.Toast;
 import com.detroitlabs.kyleofori.annotationspractice.SearchResultsAdapter;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
@@ -57,7 +58,8 @@ public class SearchResultsFragment extends Fragment implements
     private static final int LOAD_NUMBER = 10;
     private static final List<Lesson> khanAcademyLessonModels = MainActivity_.khanAcademyLessons;
 
-    private SharedPreference sharedPreference;
+    @Bean
+    SharedPreference sharedPreference;
     private List<Lesson> favorites;
 
     Activity activity;

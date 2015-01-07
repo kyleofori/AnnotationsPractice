@@ -7,6 +7,8 @@ import android.content.SharedPreferences.Editor;
 import com.detroitlabs.kyleofori.annotationspractice.Lesson;
 import com.google.gson.Gson;
 
+import org.androidannotations.annotations.EBean;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,6 +17,7 @@ import java.util.List;
  * Created by kyleofori on 12/10/14.
  */
 
+@EBean
 public class SharedPreference {
 
     public static final String PREFS_NAME = "TEACHER_TOOLS_APP";
