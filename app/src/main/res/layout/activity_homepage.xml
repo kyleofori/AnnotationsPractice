@@ -13,7 +13,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="bottom"
+        android:layout_gravity="center_horizontal"
         android:text="@string/welcome"
         android:textAllCaps="true"/>
 
@@ -21,16 +21,24 @@
         android:id="@+id/resource_loading_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="bottom"
+        android:layout_gravity="center_horizontal"
         android:text="@string/resources_loading"
         android:textAllCaps="true"/>
+
+    <ProgressBar
+        android:id="@+id/progress_wheel"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"/>
 
     <Button
         android:id="@+id/btn_go_to_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:text="@string/search_on_success"
         />
+
 
 
 </LinearLayout>
