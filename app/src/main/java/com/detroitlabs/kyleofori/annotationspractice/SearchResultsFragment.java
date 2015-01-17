@@ -26,6 +26,9 @@ import android.widget.Toast;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.ItemClick;
+import org.androidannotations.annotations.ItemLongClick;
+import org.androidannotations.annotations.LongClick;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
@@ -37,7 +40,7 @@ import java.util.List;
 
 @EFragment (R.layout.fragment_search_results)
 public class SearchResultsFragment extends Fragment implements
-        AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
+        AdapterView.OnItemClickListener {
 
     private FragmentController fragmentController;
     private SearchResultsAdapter searchResultsAdapter;
@@ -70,7 +73,6 @@ public class SearchResultsFragment extends Fragment implements
 
 
         listView.setOnItemClickListener(this);
-        listView.setOnItemLongClickListener(this);
 
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
 
@@ -194,11 +196,8 @@ public class SearchResultsFragment extends Fragment implements
         }
     }
 
-
-    @Override
-    public boolean onItemLongClick(AdapterView<?> arg0, View view,
-                                   int position, long arg3) {
-
+    @ItemLongClick(R.id.list_search_results)
+    void changeStarOnClickedItem(int position) {
         List<Lesson> filteredLessons = searchResultsAdapter.filteredLessons;
 
         if (filteredLessons.get(position).isFavorited()) {
@@ -216,9 +215,8 @@ public class SearchResultsFragment extends Fragment implements
             filteredLessons.get(position).setFavorited(true);
             searchResultsAdapter.notifyDataSetChanged();
         }
-        return true;
-    }
 
+    }
 
     @Override
     public void onResume() {
