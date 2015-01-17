@@ -9,6 +9,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.detroitlabs.kyleofori.annotationspractice.KhanAcademyApi;
+import com.detroitlabs.kyleofori.annotationspractice.KhanAcademyApiCallback;
+import com.detroitlabs.kyleofori.annotationspractice.KhanAcademyJSONParser;
+import com.detroitlabs.kyleofori.annotationspractice.Lesson;
+import com.detroitlabs.kyleofori.annotationspractice.R;
+
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;

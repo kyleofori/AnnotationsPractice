@@ -7,6 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.detroitlabs.kyleofori.annotationspractice.FragmentController;
+import com.detroitlabs.kyleofori.annotationspractice.R;
+import com.detroitlabs.kyleofori.annotationspractice.SearchResultsFragment;
+
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
