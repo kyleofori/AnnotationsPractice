@@ -190,10 +190,15 @@ public class SearchResultsFragment extends Fragment implements
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         switch (adapterView.getId()) {
             case R.id.list_search_results:
-                /*Lesson lesson = (Lesson) adapterView.getAdapter().getItem(i);
+                Lesson lesson = (Lesson) adapterView.getAdapter().getItem(i);
                 DetailFragment detailFragment = DetailFragment.newInstance(lesson);
-                fragmentController.changeFragment(detailFragment, true);*/
+                fragmentController.changeFragment(detailFragment, true);
         }
+    }
+
+    @ItemClick(R.id.list_search_results)
+    void onItemClick(int position) {
+
     }
 
     @ItemLongClick(R.id.list_search_results)
