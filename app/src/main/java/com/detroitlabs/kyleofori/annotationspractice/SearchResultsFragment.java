@@ -23,6 +23,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.detroitlabs.kyleofori.annotationspractice.utils.SharedPreference;
+
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
@@ -57,7 +59,7 @@ public class SearchResultsFragment extends Fragment implements
     private static final List<Lesson> khanAcademyLessonModels = MainActivity_.khanAcademyLessons;
 
     @Bean
-    OldSharedPreference oldSharedPreference;
+    SharedPreference sharedPreference;
     private List<Lesson> favorites;
 
     Activity activity;
@@ -121,8 +123,8 @@ public class SearchResultsFragment extends Fragment implements
         super.onCreate(savedInstanceState);
         activity = getActivity();
 
-        oldSharedPreference = new OldSharedPreference();
-        favorites = oldSharedPreference.getFavorites(activity);
+        sharedPreference = new SharedPreference();
+        favorites = sharedPreference.getFavorites(activity);
 
         if (favorites == null) {
             showAlert(getResources().getString(R.string.no_favorites_items),
@@ -209,14 +211,14 @@ public class SearchResultsFragment extends Fragment implements
         List<Lesson> filteredLessons = searchResultsAdapter.filteredLessons;
 
         if (filteredLessons.get(position).isFavorited()) {
-//            sharedPreference.removeFavorite(activity, filteredLessons.get(position));
+            sharedPreference.removeFavorite(activity, filteredLessons.get(position));
             Toast.makeText(activity,
                     activity.getResources().getString(R.string.removed_from_favorites),
                     Toast.LENGTH_SHORT).show();
             filteredLessons.get(position).setFavorited(false);
             searchResultsAdapter.notifyDataSetChanged();
         } else {
-//            sharedPreference.addFavorite(activity, filteredLessons.get(position));
+            sharedPreference.addFavorite(activity, filteredLessons.get(position));
             Toast.makeText(activity,
                     activity.getResources().getString(R.string.added_to_favorites),
                     Toast.LENGTH_SHORT).show();

@@ -10,9 +10,14 @@ package com.detroitlabs.kyleofori.annotationspractice.utils;
 
         import com.detroitlabs.kyleofori.annotationspractice.Lesson;
         import com.google.gson.Gson;
+
+        import org.androidannotations.annotations.EBean;
+
 /**
  * Created by kyleofori on 1/19/15.
  */
+
+@EBean
 public class SharedPreference {
 
     public static final String PREFS_NAME = "PRODUCT_APP";
