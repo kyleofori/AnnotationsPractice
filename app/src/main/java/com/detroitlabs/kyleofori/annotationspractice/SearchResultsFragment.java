@@ -40,8 +40,7 @@ import java.util.List;
  */
 
 @EFragment (R.layout.fragment_search_results)
-public class SearchResultsFragment extends Fragment implements
-        AdapterView.OnItemClickListener {
+public class SearchResultsFragment extends Fragment {
 
     private FragmentController fragmentController;
     private SearchResultsAdapter searchResultsAdapter;
@@ -71,10 +70,7 @@ public class SearchResultsFragment extends Fragment implements
     void setAdapterOnListView() {
         searchResultsAdapter = new SearchResultsAdapter(getActivity(), visibleLessons);
         listView.setAdapter(searchResultsAdapter);
-
-
-        listView.setOnItemClickListener(this);
-
+        
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
 
             @Override
@@ -185,16 +181,6 @@ public class SearchResultsFragment extends Fragment implements
             public void afterTextChanged(Editable arg0) {
             }
         });
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        switch (adapterView.getId()) {
-            case R.id.list_search_results:
-                Lesson lesson = (Lesson) searchResultsAdapter.getItem(i);
-                DetailFragment detailFragment = DetailFragment.newInstance(lesson);
-                fragmentController.changeFragment(detailFragment, true);
-        }
     }
 
     @ItemClick(R.id.list_search_results)
