@@ -18,12 +18,12 @@ import java.util.List;
  */
 
 @EBean
-public class SharedPreference {
+public class OldSharedPreference {
 
     public static final String PREFS_NAME = "TEACHER_TOOLS_APP";
     public static final String FAVORITES = "list_of_lesson_plan_favorites_in_String_form";
 
-    public SharedPreference() {
+    public OldSharedPreference() {
         super();
     }
 

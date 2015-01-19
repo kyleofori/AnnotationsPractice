@@ -10,6 +10,7 @@ import android.widget.Button;
 import com.detroitlabs.kyleofori.annotationspractice.FragmentController;
 import com.detroitlabs.kyleofori.annotationspractice.R;
 import com.detroitlabs.kyleofori.annotationspractice.SearchResultsFragment;
+import com.detroitlabs.kyleofori.annotationspractice.fragments.FavoritesFragment;
 
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
@@ -21,20 +22,16 @@ import org.androidannotations.annotations.ViewById;
 @EActivity(R.layout.activity_results)
 public class ResultsActivity extends Activity implements FragmentController {
 
-/*
     private FavoritesFragment favoritesFragment = new FavoritesFragment();
-*/
 
     @ViewById(R.id.btn_see_favorites)
     Button btnSeeFavorites;
 
     @Click (R.id.btn_see_favorites)
     void goToFavorites() {
-        /*
                 if(!favoritesFragment.isAdded()) {
                     changeFragment(favoritesFragment, true);
                 }
-*/
     }
 
     @Override

@@ -28,7 +28,6 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ItemClick;
 import org.androidannotations.annotations.ItemLongClick;
-import org.androidannotations.annotations.LongClick;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
@@ -58,7 +57,7 @@ public class SearchResultsFragment extends Fragment implements
     private static final List<Lesson> khanAcademyLessonModels = MainActivity_.khanAcademyLessons;
 
     @Bean
-    SharedPreference sharedPreference;
+    OldSharedPreference oldSharedPreference;
     private List<Lesson> favorites;
 
     Activity activity;
@@ -97,7 +96,7 @@ public class SearchResultsFragment extends Fragment implements
                         for (int i = startingPosition; i < stopPosition; i++) {
                             searchResultsAdapter.add(khanAcademyLessonModels.get(i));
                         }
-                        Log.i(this.getClass().getSimpleName(), "just added " + String.valueOf(startingPosition) + "thru " + String.valueOf(stopPosition));
+                        Log.i(this.getClass().getSimpleName(), "just added " + String.valueOf(startingPosition) + " thru " + String.valueOf(stopPosition));
 
 
                         searchResultsAdapter.notifyDataSetChanged();
@@ -122,8 +121,8 @@ public class SearchResultsFragment extends Fragment implements
         super.onCreate(savedInstanceState);
         activity = getActivity();
 
-        sharedPreference = new SharedPreference();
-        favorites = sharedPreference.getFavorites(activity);
+        oldSharedPreference = new OldSharedPreference();
+        favorites = oldSharedPreference.getFavorites(activity);
 
         if (favorites == null) {
             showAlert(getResources().getString(R.string.no_favorites_items),

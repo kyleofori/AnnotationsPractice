@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.detroitlabs.kyleofori.annotationspractice.Lesson;
 import com.detroitlabs.kyleofori.annotationspractice.R;
+import com.detroitlabs.kyleofori.annotationspractice.adapters.FavoritesAdapter;
 import com.detroitlabs.kyleofori.annotationspractice.utils.SharedPreference;
 
 /**
@@ -33,7 +34,7 @@ public class FavoritesFragment extends Fragment {
     List<Lesson> favorites;
 
     Activity activity;
-    ProductListAdapter productListAdapter;
+    FavoritesAdapter favoritesAdapter;
 
 
     @Override
@@ -45,7 +46,7 @@ public class FavoritesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_product_list, container,
+        View view = inflater.inflate(R.layout.fragment_favorites, container,
                 false);
         // Get favorite items from SharedPreferences.
         sharedPreference = new SharedPreference();
@@ -62,10 +63,10 @@ public class FavoritesFragment extends Fragment {
                         getResources().getString(R.string.no_favorites_msg));
             }
 
-            favoriteList = (ListView) view.findViewById(R.id.list_product);
+            favoriteList = (ListView) view.findViewById(R.id.list_favorites);
             if (favorites != null) {
-                productListAdapter = new ProductListAdapter(activity, favorites);
-                favoriteList.setAdapter(productListAdapter);
+                favoritesAdapter = new FavoritesAdapter(activity, favorites);
+                favoriteList.setAdapter(favoritesAdapter);
 
                 favoriteList.setOnItemClickListener(new OnItemClickListener() {
 
@@ -84,7 +85,7 @@ public class FavoritesFragment extends Fragment {
                                     int position, long id) {
 
                                 ImageView button = (ImageView) view
-                                        .findViewById(R.id.imgbtn_favorite);
+                                        .findViewById(R.id.img_star_result); //used to be imgbtn_favorite
 
                                 String tag = button.getTag().toString();
                                 if (tag.equalsIgnoreCase("grey")) {
@@ -93,22 +94,22 @@ public class FavoritesFragment extends Fragment {
                                     Toast.makeText(
                                             activity,
                                             activity.getResources().getString(
-                                                    R.string.add_favr),
+                                                    R.string.added_to_favorites),
                                             Toast.LENGTH_SHORT).show();
 
                                     button.setTag("red");
-                                    button.setImageResource(R.drawable.heart_red);
+                                    button.setImageResource(R.drawable.favestar);
                                 } else {
                                     sharedPreference.removeFavorite(activity,
                                             favorites.get(position));
                                     button.setTag("grey");
-                                    button.setImageResource(R.drawable.heart_grey);
-                                    productListAdapter.remove(favorites
+                                    button.setImageResource(R.drawable.star_none);
+                                    favoritesAdapter.remove(favorites
                                             .get(position));
                                     Toast.makeText(
                                             activity,
                                             activity.getResources().getString(
-                                                    R.string.remove_favr),
+                                                    R.string.removed_from_favorites),
                                             Toast.LENGTH_SHORT).show();
                                 }
                                 return true;
@@ -144,7 +145,7 @@ public class FavoritesFragment extends Fragment {
     @Override
     public void onResume() {
         getActivity().setTitle(R.string.favorites);
-        getActivity().getActionBar().setTitle(R.string.favorites);
+//        getActivity().getActionBar().setTitle(R.string.favorites);
         super.onResume();
     }
 }

@@ -29,7 +29,7 @@ public class DetailFragment extends Fragment implements View.OnLongClickListener
     }
 
     private TextView txtTitle, txtKaUrl, txtDescription;
-    private SharedPreference sharedPreference = new SharedPreference();
+    private OldSharedPreference oldSharedPreference = new OldSharedPreference();
     private Lesson lesson;
     private ImageView imgFavoritesStar;
 
