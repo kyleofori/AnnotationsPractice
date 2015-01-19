@@ -36,7 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by bobbake4 on 11/13/14.
+ * Created by kyleofori on 11/13/14.
  */
 
 @EFragment (R.layout.fragment_search_results)
@@ -70,7 +70,7 @@ public class SearchResultsFragment extends Fragment {
     void setAdapterOnListView() {
         searchResultsAdapter = new SearchResultsAdapter(getActivity(), visibleLessons);
         listView.setAdapter(searchResultsAdapter);
-        
+
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
 
             @Override
