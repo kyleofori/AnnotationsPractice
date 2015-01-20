@@ -73,8 +73,13 @@ public class SharedPreference {
             Lesson[] favoriteItems = gson.fromJson(jsonFavorites,
                     Lesson[].class);
 
-            favorites = Arrays.asList(favoriteItems);
-            favorites = new ArrayList<Lesson>(favorites);
+            if(favoriteItems != null) {
+                favorites = Arrays.asList(favoriteItems);
+                favorites = new ArrayList<Lesson>(favorites);
+            } else {
+                favorites = new ArrayList<Lesson>();
+            }
+
         } else
             return null;
 
