@@ -21,13 +21,13 @@ import com.detroitlabs.kyleofori.annotationspractice.utils.SharedPreference;
 public class FavoritesAdapter extends ArrayAdapter<Lesson> {
 
         private Context context;
-        List<Lesson> lessons;
+        List<Lesson> favorites;
         SharedPreference sharedPreference;
 
-        public FavoritesAdapter(Context context, List<Lesson> lessons) {
-            super(context, R.layout.list_item_lesson_plan, lessons);
+        public FavoritesAdapter(Context context, List<Lesson> favorites) {
+            super(context, R.layout.list_item_lesson_plan, favorites);
             this.context = context;
-            this.lessons = lessons;
+            this.favorites = favorites;
             sharedPreference = new SharedPreference();
         }
 
@@ -40,12 +40,12 @@ public class FavoritesAdapter extends ArrayAdapter<Lesson> {
 
         @Override
         public int getCount() {
-            return lessons.size();
+            return favorites.size();
         }
 
         @Override
         public Lesson getItem(int position) {
-            return lessons.get(position);
+            return favorites.get(position);
         }
 
         @Override
@@ -95,7 +95,6 @@ public class FavoritesAdapter extends ArrayAdapter<Lesson> {
         /*Checks whether a particular lesson exists in SharedPreferences*/
         public boolean checkFavoriteItem(Lesson checkLesson) {
             boolean check = false;
-            List<Lesson> favorites = sharedPreference.getFavorites(context);
             if (favorites != null) {
                 for (Lesson lesson : favorites) {
                     if (lesson.equals(checkLesson)) {
@@ -110,14 +109,14 @@ public class FavoritesAdapter extends ArrayAdapter<Lesson> {
         @Override
         public void add(Lesson lesson) {
             super.add(lesson);
-            lessons.add(lesson);
+            favorites.add(lesson);
             notifyDataSetChanged();
         }
 
         @Override
         public void remove(Lesson lesson) {
             super.remove(lesson);
-            lessons.remove(lesson);
+            favorites.remove(lesson);
             notifyDataSetChanged();
         }
     }
