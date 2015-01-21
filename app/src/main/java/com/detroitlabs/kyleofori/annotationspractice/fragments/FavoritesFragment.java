@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -36,6 +37,8 @@ public class FavoritesFragment extends Fragment {
     Activity activity;
     FavoritesAdapter favoritesAdapter;
 
+    Button btnClearFavorites;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,8 @@ public class FavoritesFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_favorites, container,
                 false);
+
+        btnClearFavorites = (Button) view.findViewById(R.id.btn_clear_favorites);
         // Get favorite items from SharedPreferences.
         sharedPreference = new SharedPreference();
         favorites = sharedPreference.getFavorites(activity);
@@ -140,6 +145,18 @@ public class FavoritesFragment extends Fragment {
                     });
             alertDialog.show();
         }
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        btnClearFavorites.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sharedPreference.clearFavorites(getActivity());
+            }
+        });
+
     }
 
     @Override

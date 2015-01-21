@@ -85,4 +85,16 @@ public class SharedPreference {
 
         return (ArrayList<Lesson>) favorites;
     }
+
+    public void clearFavorites(Context context) {
+        SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        Editor editor;
+        editor = settings.edit();
+
+        if(settings.contains(FAVORITES)) {
+            editor.putString(FAVORITES, null);
+            editor.commit();
+        }
+    }
+
 }
