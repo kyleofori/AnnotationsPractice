@@ -12,6 +12,7 @@
     <string name="see_favorites">See favorites</string>
     <string name="removed_from_favorites">Removed from favorites.</string>
     <string name="clear_favorites">Clear favorites</string>
+    <string name="favorites_cleared">Favorites cleared.</string>
     <string name="downloads">Downloads</string>
     <string name="search_on_success">Search the Lesson plans!</string>
     <string name="search_on_error">Search the Lesson plans anyway.</string>
