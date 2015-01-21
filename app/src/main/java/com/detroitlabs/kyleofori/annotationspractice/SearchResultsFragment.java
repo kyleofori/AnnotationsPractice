@@ -135,27 +135,6 @@ public class SearchResultsFragment extends Fragment {
 
         }
 
-
-        startingPosition = 0;
-        stopPosition = 10;
-
-        visibleLessons.clear();
-        for(int i=startingPosition; i<stopPosition; i++) {
-            visibleLessons.add(khanAcademyLessonModels.get(i));
-
-            Lesson currentLesson = visibleLessons.get(i);
-            String currentLessonId = currentLesson.getLessonId();
-
-            if(favorites != null) {
-                for (Lesson x : favorites) {
-                    if (currentLessonId.equals(x.getLessonId())) {
-                        currentLesson.setFavorited(true);
-                    }
-                }
-            }
-        }
-
-        Log.i(this.getClass().getSimpleName(), "See some id " + visibleLessons.get(0).getLessonId());
         searchResultsAdapter = new SearchResultsAdapter(getActivity(), visibleLessons);
     }
 
@@ -164,6 +143,37 @@ public class SearchResultsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         //retrieveParseObjectsFromCloud();
+
+        startingPosition = 0;
+        stopPosition = 10;
+        Log.i(this.getClass().getSimpleName(), "in onViewCreated");
+
+        visibleLessons.clear();
+        for(int i=startingPosition; i<stopPosition; i++) {
+            visibleLessons.add(khanAcademyLessonModels.get(i));
+
+            Lesson currentLesson = visibleLessons.get(i);
+            String currentLessonId = currentLesson.getLessonId();
+
+            if (favorites != null) {
+                for (Lesson x : favorites) {
+                    if (currentLessonId.equals(x.getLessonId())) {
+                        currentLesson.setFavorited(true);
+                    }
+                }
+            }
+        }
+
+/*        for(Lesson x: searchResultsAdapter.filteredLessons) {
+            if(favorites != null) {
+                for(Lesson y: favorites) {
+                    if(x.getLessonId().equals(y.getLessonId())) {
+                        x.setFavorited(true);
+                    }
+                }
+            }
+        }*/
+
 
         edtInputSearch = (EditText) view.findViewById(R.id.edt_input_search);
         edtInputSearch.addTextChangedListener(new TextWatcher() {
@@ -193,7 +203,7 @@ public class SearchResultsFragment extends Fragment {
     }
 
     @ItemLongClick(R.id.list_search_results)
-    void changeStarOnClickedItem(int position) {
+    void changeStar(int position) {
         List<Lesson> filteredLessons = searchResultsAdapter.filteredLessons;
 
         if (filteredLessons.get(position).isFavorited()) {
@@ -219,6 +229,7 @@ public class SearchResultsFragment extends Fragment {
         super.onResume();
         getActivity().setTitle(R.string.favorites);
 //        getActivity().getActionBar().setTitle(R.string.favorites);
+
     }
 
 

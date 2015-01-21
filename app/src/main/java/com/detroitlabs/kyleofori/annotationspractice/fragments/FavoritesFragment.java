@@ -156,8 +156,8 @@ public class FavoritesFragment extends Fragment {
             public void onClick(View view) {
                 sharedPreference.clearFavorites(getActivity());
                 for (int i = (favorites.size() - 1); i > -1; i--) {
+                    //need to replace the line this text is on with marking lessons in SRF as notFav
                     favoritesAdapter.remove(favorites.get(i));
-                    Log.i("FavoritesFragment", "theoretically removing a favorite");
                 }
                 Toast.makeText(activity,
                         activity.getResources().getString(R.string.favorites_cleared),
