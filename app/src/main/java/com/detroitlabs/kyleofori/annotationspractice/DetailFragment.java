@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.detroitlabs.kyleofori.annotationspractice.utils.SharedPreference;
+
 /**
  * Created by kyleofori on 11/13/14.
  */
@@ -29,7 +31,7 @@ public class DetailFragment extends Fragment implements View.OnLongClickListener
     }
 
     private TextView txtTitle, txtKaUrl, txtDescription;
-    private OldSharedPreference oldSharedPreference = new OldSharedPreference();
+    private SharedPreference sharedPreference = new SharedPreference();
     private Lesson lesson;
     private ImageView imgFavoritesStar;
 
@@ -72,6 +74,7 @@ public class DetailFragment extends Fragment implements View.OnLongClickListener
             case R.id.img_detail_star:
                 Activity activity = this.getActivity();
                 if (lesson.isFavorited()) {
+                    sharedPreference.removeFavorite(activity, lesson);
                     Toast.makeText(activity,
                             activity.getResources().getString(R.string.removed_from_favorites),
                             Toast.LENGTH_SHORT).show();
@@ -79,6 +82,7 @@ public class DetailFragment extends Fragment implements View.OnLongClickListener
                     imgFavoritesStar.setImageDrawable(activity.getResources().getDrawable(R.drawable.star_none));
 
                 } else {
+                    sharedPreference.addFavorite(activity, lesson);
                     Toast.makeText(activity,
                             activity.getResources().getString(R.string.added_to_favorites),
                             Toast.LENGTH_SHORT).show();
