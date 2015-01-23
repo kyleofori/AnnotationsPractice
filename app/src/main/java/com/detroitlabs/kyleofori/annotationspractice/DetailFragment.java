@@ -3,9 +3,7 @@ package com.detroitlabs.kyleofori.annotationspractice;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,41 +35,36 @@ public class DetailFragment extends Fragment {
         return detailFragment;
     }
 
-    private TextView txtTitle, txtKaUrl, txtDescription;
     private SharedPreference sharedPreference = new SharedPreference();
     private Lesson lesson;
+
+    @ViewById (R.id.txt_title_result)
+    TextView txtTitle;
+
+    @ViewById (R.id.txt_lessonUrl_result)
+    TextView txtUrl;
+
+    @ViewById (R.id.txt_description_result)
+    TextView txtDescription;
 
     @ViewById (R.id.img_detail_star)
     ImageView imgFavoritesStar;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_detail, container, false);
-
-        txtTitle = (TextView) view.findViewById(R.id.txt_title_result);
-        txtKaUrl = (TextView) view.findViewById(R.id.txt_lessonUrl_result);
-        txtDescription = (TextView) view.findViewById(R.id.txt_description_result);
-
-        return view;
-    }
-
-    @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         lesson = getArguments().getParcelable(ARG_PLAYLIST);
+    }
 
+    @AfterViews
+    void setViewsWithLessonInfo() {
         if (lesson != null) {
-
             txtTitle.setText(lesson.getTitle());
-            txtKaUrl.setText(lesson.getLessonUrl());
+            txtUrl.setText(lesson.getLessonUrl());
             txtDescription.setText(lesson.getDescription());
-
         } else {
             throw new IllegalStateException("Must supply a KhanAcademyPlaylist to DetailFragment");
         }
-
-
     }
 
     @AfterViews
