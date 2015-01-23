@@ -28,7 +28,7 @@ public class DetailFragment extends Fragment implements View.OnLongClickListener
         Bundle args = new Bundle();
         args.putParcelable(ARG_PLAYLIST, lesson);
 
-        DetailFragment detailFragment = new DetailFragment();
+        DetailFragment detailFragment = new DetailFragment_();
         detailFragment.setArguments(args);
 
         return detailFragment;
