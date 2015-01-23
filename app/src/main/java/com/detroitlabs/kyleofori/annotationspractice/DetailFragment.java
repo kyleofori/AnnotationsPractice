@@ -12,8 +12,10 @@ import android.widget.Toast;
 
 import com.detroitlabs.kyleofori.annotationspractice.utils.SharedPreference;
 
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.LongClick;
+import org.androidannotations.annotations.ViewById;
 
 /**
  * Created by kyleofori on 11/13/14.
@@ -38,7 +40,9 @@ public class DetailFragment extends Fragment {
     private TextView txtTitle, txtKaUrl, txtDescription;
     private SharedPreference sharedPreference = new SharedPreference();
     private Lesson lesson;
-    private ImageView imgFavoritesStar;
+
+    @ViewById (R.id.img_detail_star)
+    ImageView imgFavoritesStar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,7 +51,6 @@ public class DetailFragment extends Fragment {
         txtTitle = (TextView) view.findViewById(R.id.txt_title_result);
         txtKaUrl = (TextView) view.findViewById(R.id.txt_lessonUrl_result);
         txtDescription = (TextView) view.findViewById(R.id.txt_description_result);
-        imgFavoritesStar = (ImageView) view.findViewById(R.id.img_detail_star);
 
         return view;
     }
@@ -68,8 +71,12 @@ public class DetailFragment extends Fragment {
             throw new IllegalStateException("Must supply a KhanAcademyPlaylist to DetailFragment");
         }
 
-        imgFavoritesStar.setImageDrawable(lesson.getStar(this.getActivity()));
 
+    }
+
+    @AfterViews
+    void setImageDrawable() {
+        imgFavoritesStar.setImageDrawable(lesson.getStar(this.getActivity()));
     }
 
 
