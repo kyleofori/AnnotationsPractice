@@ -13,13 +13,14 @@ import android.widget.Toast;
 import com.detroitlabs.kyleofori.annotationspractice.utils.SharedPreference;
 
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.LongClick;
 
 /**
  * Created by kyleofori on 11/13/14.
  */
 
 @EFragment(R.layout.fragment_detail)
-public class DetailFragment extends Fragment implements View.OnLongClickListener {
+public class DetailFragment extends Fragment {
 
     private static final String ARG_PLAYLIST = "arg_khan_academy_playlist";
 
@@ -47,7 +48,6 @@ public class DetailFragment extends Fragment implements View.OnLongClickListener
         txtKaUrl = (TextView) view.findViewById(R.id.txt_lessonUrl_result);
         txtDescription = (TextView) view.findViewById(R.id.txt_description_result);
         imgFavoritesStar = (ImageView) view.findViewById(R.id.img_detail_star);
-        imgFavoritesStar.setOnLongClickListener(this);
 
         return view;
     }
@@ -72,29 +72,27 @@ public class DetailFragment extends Fragment implements View.OnLongClickListener
 
     }
 
-    @Override
-    public boolean onLongClick(View view) {
-        switch (view.getId()) {
-            case R.id.img_detail_star:
-                Activity activity = this.getActivity();
-                if (lesson.isFavorited()) {
-                    sharedPreference.removeFavorite(activity, lesson);
-                    Toast.makeText(activity,
-                            activity.getResources().getString(R.string.removed_from_favorites),
-                            Toast.LENGTH_SHORT).show();
-                    lesson.setFavorited(false);
-                    imgFavoritesStar.setImageDrawable(activity.getResources().getDrawable(R.drawable.star_none));
 
-                } else {
-                    sharedPreference.addFavorite(activity, lesson);
-                    Toast.makeText(activity,
-                            activity.getResources().getString(R.string.added_to_favorites),
-                            Toast.LENGTH_SHORT).show();
-                    lesson.setFavorited(true);
-                    imgFavoritesStar.setImageDrawable(activity.getResources().getDrawable(R.drawable.favestar));
+    @LongClick (R.id.img_detail_star)
+    void onLongClick() {
+        Activity activity = this.getActivity();
+        if (lesson.isFavorited()) {
+            sharedPreference.removeFavorite(activity, lesson);
+            Toast.makeText(activity,
+                    activity.getResources().getString(R.string.removed_from_favorites),
+                    Toast.LENGTH_SHORT).show();
+            lesson.setFavorited(false);
+            imgFavoritesStar.setImageDrawable(activity.getResources().getDrawable(R.drawable.star_none));
 
-                }
+        } else {
+            sharedPreference.addFavorite(activity, lesson);
+            Toast.makeText(activity,
+                    activity.getResources().getString(R.string.added_to_favorites),
+                    Toast.LENGTH_SHORT).show();
+            lesson.setFavorited(true);
+            imgFavoritesStar.setImageDrawable(activity.getResources().getDrawable(R.drawable.favestar));
+
         }
-        return false;
     }
+
 }
