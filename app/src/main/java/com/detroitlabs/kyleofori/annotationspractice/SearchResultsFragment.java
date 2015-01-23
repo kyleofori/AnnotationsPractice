@@ -195,7 +195,7 @@ public class SearchResultsFragment extends Fragment {
     @ItemClick(R.id.list_search_results)
     void onItemClick(int i) {
         Lesson lesson = searchResultsAdapter.getItem(i);
-        DetailFragment detailFragment = DetailFragment.newInstance(lesson);
+        DetailFragment detailFragment = DetailFragment_.newInstance(lesson);
         fragmentController.changeFragment(detailFragment, true);
 
 
