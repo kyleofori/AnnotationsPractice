@@ -12,9 +12,13 @@ import android.widget.Toast;
 
 import com.detroitlabs.kyleofori.annotationspractice.utils.SharedPreference;
 
+import org.androidannotations.annotations.EFragment;
+
 /**
  * Created by kyleofori on 11/13/14.
  */
+
+@EFragment(R.layout.fragment_detail)
 public class DetailFragment extends Fragment implements View.OnLongClickListener {
 
     private static final String ARG_PLAYLIST = "arg_khan_academy_playlist";
